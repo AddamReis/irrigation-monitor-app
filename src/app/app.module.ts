@@ -10,9 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideDatabase, getDatabase } from '@angular/fire/database'; // Realtime Database
 import { environment } from '../environments/environment';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(),
@@ -22,6 +24,7 @@ import { environment } from '../environments/environment';
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideDatabase(() => getDatabase()),
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    provideAnimationsAsync('noop'),
   ],
   bootstrap: [AppComponent],
 })
