@@ -1,0 +1,7 @@
+{
+  "name": "irrigationApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
