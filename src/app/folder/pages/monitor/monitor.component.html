@@ -15,8 +15,18 @@
   </ion-header>
 
   <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <p>Bem-vindos ao App de monitoramento de Irrigação!</p>
+    <p><strong class="capitalize">Média dos Sensores: {{ data?.soilMoisturePercentageMean }}%</strong></p>
+    <p>Última leitura: {{ data?.hourMinute }}</p>
+
+    <div *ngIf="data?.soilMoistureSensors?.length ?? 0">
+      <ul>
+        <div *ngFor="let sensor of data?.soilMoistureSensors ?? []">
+          <p>Sensor {{ sensor?.index }}: {{ sensor?.soilMoisturePercentage }}%</p>
+        </div>
+      </ul>
+    </div>
+    
+    <p *ngIf="(data?.soilMoistureSensors?.length ?? 0) === 0">Nenhum sensor encontrado.</p>
+
   </div>
 </ion-content>

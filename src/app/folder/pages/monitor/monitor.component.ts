@@ -18,6 +18,7 @@ export class MonitorComponent  implements OnInit {
 
   ngOnInit() {
     const currentDate = new Date();
+    currentDate.setHours(currentDate.getHours() - 3);
 
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
 
@@ -43,16 +44,32 @@ export class MonitorComponent  implements OnInit {
       const latestData = data[latestTimeKey];
 
       this.data = {
-        soilMoistureSensors: [],
+        hourMinute: latestTimeKey.replace('-', ':').toString(),
         soilMoisturePercentageMean: latestData.soilMoisturePercentageMean,
         soilMoistureValueMean: latestData.soilMoistureValueMean,
+        soilMoistureSensors: []
       };
 
-      this.addSensorData(latestData.soilMoisturePercentage1, latestData.soilMoistureValue1, 1);
-      this.addSensorData(latestData.soilMoisturePercentage2, latestData.soilMoistureValue2, 2);
+      this.processSensorData(latestData);
 
       console.log('Dados mais recentes:', this.data);
     });
+  }
+
+  private processSensorData(latestData: any) {
+    let index = 1;
+
+    while (true) {
+      const percentage = latestData[`soilMoisturePercentage${index}`];
+      const value = latestData[`soilMoistureValue${index}`];
+
+      if (percentage === undefined || value === undefined) {
+        break;
+      }
+
+      this.addSensorData(percentage, value, index);
+      index++;
+    }
   }
 
   private addSensorData(percentage: number | undefined, value: number | undefined, index: number) {
@@ -73,6 +90,7 @@ export interface SoilMoistureSensor {
 }
 
 export interface Sensor {
+  hourMinute: string;
   soilMoisturePercentageMean: number;
   soilMoistureValueMean: number;
   soilMoistureSensors: SoilMoistureSensor[];
