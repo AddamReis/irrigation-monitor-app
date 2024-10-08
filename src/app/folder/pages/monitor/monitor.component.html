@@ -18,12 +18,14 @@
     <p><strong class="capitalize">Média dos Sensores: {{ data?.soilMoisturePercentageMean }}%</strong></p>
     <p>Última leitura: {{ data?.hourMinute }}</p>
 
-    <div *ngIf="data?.soilMoistureSensors?.length ?? 0">
-      <ul>
-        <div *ngFor="let sensor of data?.soilMoistureSensors ?? []">
-          <p>Sensor {{ sensor?.index }}: {{ sensor?.soilMoisturePercentage }}%</p>
-        </div>
-      </ul>
+    <div *ngIf="data?.soilMoistureSensors?.length ?? 0" class="card-container">
+      <div *ngFor="let sensor of data?.soilMoistureSensors ?? []" class="card-wrapper">
+        <app-card
+          icon="person"
+          title="Sensor nº {{ sensor?.index }}"
+          [percentage]="sensor?.soilMoisturePercentage || 0">
+        </app-card>
+      </div>
     </div>
     
     <p *ngIf="(data?.soilMoistureSensors?.length ?? 0) === 0">Nenhum sensor encontrado.</p>

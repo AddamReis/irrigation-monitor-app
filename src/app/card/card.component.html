@@ -1,0 +1,17 @@
+<div class="card mat-elevation-z8" 
+  [style.background-color]="color"
+  [style.width.px]="width"
+  [style.height.px]="height"
+  (click)="onCardClick()">
+  <div class="card-content">
+    <h3>{{ title }}</h3>
+    <div *ngIf="icon">
+      <div class="card-icon">
+        <mat-icon>{{ icon }}</mat-icon>
+      </div>
+    </div>
+    <div *ngIf="percentage > 0">
+      <p>{{ percentage }}%</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.card {
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white; /* ou a cor que preferir para o texto */
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  
+    &:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: scale(1.05);
+    }
+  
+    &:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  .card-icon {
+    font-size: 48px;
+  }
+  
+  .card-content {
+    //margin-top: 10px;
+    text-align: center;
+  
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 450;
+    }
+  
+    p {
+      margin: 4px 0 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
+  

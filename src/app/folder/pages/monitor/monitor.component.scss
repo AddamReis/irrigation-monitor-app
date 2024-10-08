@@ -7,7 +7,7 @@ ion-menu-button {
     position: absolute;
     left: 0;
     right: 0;
-    top: 50%;
+    padding-top: 300px;
     transform: translateY(-50%);
   }
   
@@ -25,4 +25,16 @@ ion-menu-button {
   
   #container a {
     text-decoration: none;
+  }
+
+  .card-container {
+    padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os cards */
+    gap: 8px; /* Espaçamento entre os cards */
+  }
+  
+  .card-wrapper {
+    flex: 0 1 200px; /* Os cards terão largura fixa de 200px, mas poderão encolher se necessário */
   }

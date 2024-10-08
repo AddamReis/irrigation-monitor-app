@@ -11,22 +11,20 @@ export class MonitorComponent  implements OnInit {
   
   public folder!: string;
   private activatedRoute = inject(ActivatedRoute);
-  
   public data: Sensor | null = null;
   
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService) 
+  {
+    this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
+  }
 
   ngOnInit() {
     const currentDate = new Date();
     currentDate.setHours(currentDate.getHours() - 3);
 
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
-
     /*this.firebaseService.addData('users/user1', { name: 'Addam Reis', age: 28 })
       .then(() => console.log('Dados adicionados com sucesso'))
       .catch(err => console.error('Erro ao adicionar dados', err));*/
-
-    //const fullDateTime = currentDate.toISOString().slice(0, 19).replace('T', ' ');
 
     const year = currentDate.toISOString().slice(0, 4).replace('T', ' ');
     const month = currentDate.toISOString().slice(5, 7);
@@ -79,6 +77,17 @@ export class MonitorComponent  implements OnInit {
         soilMoisturePercentage: percentage,
         soilMoistureValue: value,
       });
+    }
+  }
+
+  private executePumping(index: number, allPumping?: boolean | undefined) {
+    if(allPumping) {
+      this.firebaseService.updateData('request/', { 'execut-all-pumps': true });
+    }
+    else if (index > 0) {
+      this.firebaseService.updateData('request/', {[`execut-pump-${index}`] : true });
+    }
+    else{
     }
   }
 }
