@@ -21,7 +21,7 @@
     <div *ngIf="data?.soilMoistureSensors?.length ?? 0" class="card-container">
       <div *ngFor="let sensor of data?.soilMoistureSensors ?? []" class="card-wrapper">
         <app-card
-          icon="person"
+          icon="eco"
           title="Sensor nº {{ sensor?.index }}"
           [percentage]="sensor?.soilMoisturePercentage || 0">
         </app-card>
