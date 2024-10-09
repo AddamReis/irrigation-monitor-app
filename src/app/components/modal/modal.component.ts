@@ -23,7 +23,7 @@ export class ModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.sensorHistoricList = this.data.sensorHistoricList;
-    this.updateChartData(); // Inicializa com dados do último dia
+    this.updateChartData(1); // Inicializa com dados do último dia
   }
 
   onNoClick(): void {
@@ -38,11 +38,11 @@ export class ModalComponent implements OnInit {
   setDays(days: number): void {
     this.data.historicOfOndex(this.data.sensorIndex, days).then((sensorHistoricList: Sensor[]) => {
         this.sensorHistoricList = sensorHistoricList;
-        this.updateChartData();
+        this.updateChartData(days);
     });
   }
 
-  private updateChartData(): void {
+  private updateChartData(days: number): void {
     // Limpa os dados anteriores do gráfico
     this.lineChartData[0].data = [];
     this.lineChartLabels = [];
@@ -53,7 +53,10 @@ export class ModalComponent implements OnInit {
     this.sensorHistoricList.forEach((sensor, index) => {
       if (index % step === 0) { // Apenas pega pontos em intervalos
         this.lineChartData[0].data.push(sensor.soilMoisturePercentageMean);
-        this.lineChartLabels.push(`${sensor.day} ${sensor.hourMinute}`);
+        if(days === 1)
+          this.lineChartLabels.push(`${sensor.hourMinute}`);
+        else
+          this.lineChartLabels.push(`(${sensor.day}) ${sensor.hourMinute}`);
       }
     });
   }
