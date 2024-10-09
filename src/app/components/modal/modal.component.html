@@ -1,23 +1,20 @@
-<div class="container">
-  
-  <div class="flex-10">
-    <div class="header flex-1">
-      <h4 mat-dialog-title>{{ data.title }}</h4>
-      <button mat-icon-button class="close-button" (click)="onNoClick()">
-        <mat-icon>close</mat-icon>
-      </button>
-    </div>
-  
-    <div mat-dialog-content class="flex-8">
-      <p>Informações do Sensor:</p>
-      <p>Percentagem de Umidade: {{ data.percentage }}%</p>
-      <p>Valor de Umidade: {{ data.value }}</p>
-    </div>
-  
-    <div mat-dialog-actions class="footer flex-1">
-      <button mat-button (click)="onNoClick()">Cancelar</button>
-      <button mat-raised-button color="primary" class="activate-button" (click)="onActivatePumping()">Ativar Bomba</button>
-    </div>
+<div class="container mat-elevation-z8">
+  <div class="header">
+    <h4 mat-dialog-title>{{ data.title }}</h4>
+    <button mat-icon-button class="close-button" (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
-  
+
+  <div mat-dialog-content class="content">
+    <p>Informações do Sensor:</p>
+    <p>Percentagem de Umidade: {{ data.percentage }}%</p>
+    <p>Valor de Umidade: {{ data.value }}</p>
+  </div>
+
+  <div mat-dialog-actions class="footer">
+    <button mat-raised-button color="primary" class="activate-button" (click)="onActivatePumping()">
+      Ativar Bomba
+    </button>
+  </div>
 </div>

@@ -1,96 +1,89 @@
 /* Container geral do modal */
 .container {
-    padding: 10px;
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* Header com título centralizado e botão de fechar alinhado à direita */
-  .header {
-    padding-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    position: relative;
-    margin-bottom: 1rem;
-  }
-  
-  /* Título centralizado */
-  h4.mat-dialog-title {
-    font-size: 1.5rem;
-    text-align: center;
-    flex-grow: 1;
-    margin: 0;
-    color: black;
-  }
-  
-  /* Botão de fechar alinhado à direita */
-  .close-button {
-    margin-left: auto;
-    color: #333;
-    background-color: transparent; /* Remova se quiser um fundo sólido */
-    border-radius: 50%; /* Arredonda completamente o botão */
-    transition: background-color 0.3s ease; /* Efeito de transição */
-    padding: 3px;
-  }
-  
-  /* Conteúdo do diálogo, centralizado */
-  .mat-dialog-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    color: black;
-  }
-  
-  /* Footer com botões alinhados: "Cancelar" à esquerda e "Ativar Bomba" à direita */
-  .footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-  }
-  
-  /* Estilo para os botões */
-  .footer button {
-    padding: 0.5rem 1rem;
-  }
-  
-  .activate-button {
-    background-color: #007bff;
+  display: flex;
+  flex-direction: column; /* Coloca os elementos em uma coluna */
+  padding: 10px;
+  width: 100%;
+  height: 100%; /* Ocupa 100% da altura */
+  box-sizing: border-box;
+}
+
+/* Header ocupa 1 parte do espaço */
+.header {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 10px;
+}
+
+/* Conteúdo (body) ocupa 8 partes do espaço */
+.content {
+  flex: 8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Footer ocupa 1 parte do espaço */
+.footer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Botão ativar bomba */
+.activate-button {
+  background-color: #007bff;
+  color: white;
+  height: 50px;
+  width: 200px;
+  border-radius: 15px;
+}
+
+/* Fechar botão */
+.close-button {
+  margin-left: auto;
+  color: #333;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  padding: 3px;
+}
+
+.close-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Flex layout para distribuição */
+.flex-1 {
+  flex: 1;
+}
+
+.flex-8 {
+  flex: 8;
+}
+
+.flex-10 {
+  flex: 10;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .container, .header, .footer {
+    background-color: #444;
     color: white;
   }
-  
-  .activate-button:hover {
-    background-color: #0056b3;
+
+  .activate-button {
+    background-color: #1a73e8;
   }
 
-  .close-button:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  .close-button {
+    color: white;
   }
-  
-  .flex-1 {
-    flex: 1;
-  }
-
-  .flex-8 {
-    flex: 8;
-  }
-
-  .flex-10 {
-    flex: 10;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .container, .header, .footer {
-      background-color: #444;
-      color: white;
-    }
-  
-    .activate-button {
-      background-color: #1a73e8; /* Cor do botão no modo escuro */
-    }
-  
-    .close-button {
-      color: white; /* Botão de fechar em branco no modo escuro */
-    }
-  }
+}
