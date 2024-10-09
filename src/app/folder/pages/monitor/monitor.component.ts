@@ -55,6 +55,64 @@ export class MonitorComponent  implements OnInit {
     });
   }
 
+  private historicOfOndex(index: number, days: number = 1) {
+    const sensorDataList: Sensor[] = [];
+    const currentDate = new Date();
+    currentDate.setHours(currentDate.getHours() - 3);
+  
+    // Função auxiliar para buscar os dados de um dia específico
+    const fetchDataForDay = (date: Date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Corrige mês (Jan é 0)
+      const day = String(date.getDate()).padStart(2, '0');
+      
+      this.firebaseService.getDataRealTime(`period/${year}/${month}/${day}`).subscribe((data) => {
+        Object.keys(data).forEach((time) => {
+          // Usando a variável de índice para acessar os dados
+          const soilMoisturePercentage = data[time][`soilMoisturePercentage${index}`];
+          const soilMoistureValue = data[time][`soilMoistureValue${index}`];
+  
+          if (soilMoisturePercentage !== undefined && soilMoistureValue !== undefined) {
+            sensorDataList.push({
+              day: date.getDate(),
+              hourMinute: time.replace('-', ':'),  // Converte "hora-minuto" para "hora:minuto"
+              soilMoisturePercentageMean: soilMoisturePercentage,
+              soilMoistureValueMean: soilMoistureValue,
+              soilMoistureSensors: []
+            });
+          }
+        });
+  
+        // Se for o último dia da iteração, realiza a ordenação e processamento
+        if (date.getDate() === currentDate.getDate() - (days - 1)) {
+          // Ordena a lista por dia (maior para menor), e depois por hora e minuto
+          sensorDataList.sort((a, b) => {
+            if (b.day !== a.day) {
+              return b.day! - a.day!; // Ordena por dia (maior para menor)
+            }
+            const [hourA, minuteA] = a.hourMinute.split(':').map(Number);
+            const [hourB, minuteB] = b.hourMinute.split(':').map(Number);
+            if (hourA === hourB) {
+              return minuteA - minuteB; // Ordena por minutos se as horas forem iguais
+            } else {
+              return hourA - hourB; // Ordena por horas
+            }
+          });
+  
+          // Processa a lista após a ordenação
+          console.log(sensorDataList);
+        }
+      });
+    };
+  
+    // Itera sobre os últimos dias, começando do dia atual
+    for (let i = 0; i < days; i++) {
+      const date = new Date();
+      date.setDate(currentDate.getDate() - i);
+      fetchDataForDay(date); // Busca dados para cada dia
+    }
+  }
+
   private processSensorData(latestData: any) {
     let index = 1;
 
@@ -93,6 +151,9 @@ export class MonitorComponent  implements OnInit {
   }
 
   async openSensorDetailModal(title: string, percentage: number, value: number, sensorIndex: number) {
+    
+    this.historicOfOndex(sensorIndex, 1);
+
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '500px',
       height: '400px',
@@ -114,6 +175,7 @@ export interface SoilMoistureSensor {
 }
 
 export interface Sensor {
+  day?: number | null;
   hourMinute: string;
   soilMoisturePercentageMean: number;
   soilMoistureValueMean: number;
