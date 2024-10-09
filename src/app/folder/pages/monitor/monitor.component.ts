@@ -92,7 +92,7 @@ export class MonitorComponent  implements OnInit {
     }
   }
 
-  async openSensorDetailModal(title: string, percentage: number, value: number) {
+  async openSensorDetailModal(title: string, percentage: number, value: number, sensorIndex: number) {
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '500px',
       height: '400px',
@@ -100,10 +100,9 @@ export class MonitorComponent  implements OnInit {
         title: title,
         percentage: percentage,
         value: value,
+        sensorIndex: sensorIndex,
+        executePumping: (index: number) => this.executePumping(index)
       },
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
     });
   }
 }

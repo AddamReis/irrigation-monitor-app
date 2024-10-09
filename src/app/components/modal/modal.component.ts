@@ -15,6 +15,11 @@ export class ModalComponent {
   ) {}
 
   onNoClick(): void {
+    this.dialogRef.close(); // Fecha o modal
+  }
+
+  onActivatePumping(): void {
     this.dialogRef.close();
+    this.data.executePumping(this.data.sensorIndex);
   }
 }

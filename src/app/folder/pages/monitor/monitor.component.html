@@ -24,7 +24,7 @@
           icon="eco"
           title="Sensor nº {{ sensor?.index }}"
           [percentage]="sensor?.soilMoisturePercentage || 0"
-          (onClick)="openSensorDetailModal('Sensor nº ' + sensor?.index, sensor.soilMoisturePercentage, sensor.soilMoistureValue)">
+          (onClick)="openSensorDetailModal('Sensor nº ' + sensor?.index, sensor.soilMoisturePercentage, sensor.soilMoistureValue, sensor?.index || 0)">
         </app-card>
       </div>
     </div>
