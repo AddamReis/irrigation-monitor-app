@@ -22,10 +22,6 @@ export class MonitorComponent  implements OnInit {
     const currentDate = new Date();
     currentDate.setHours(currentDate.getHours() - 3);
 
-    /*this.firebaseService.addData('users/user1', { name: 'Addam Reis', age: 28 })
-      .then(() => console.log('Dados adicionados com sucesso'))
-      .catch(err => console.error('Erro ao adicionar dados', err));*/
-
     const year = currentDate.toISOString().slice(0, 4).replace('T', ' ');
     const month = currentDate.toISOString().slice(5, 7);
     const day = currentDate.toISOString().slice(8, 10);

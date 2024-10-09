@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { MonitorComponent } from './pages/monitor/monitor.component';
-import { CardComponent } from '../card/card.component';
+import { CardComponent } from '../components/card/card.component';
 
 @NgModule({
   imports: [
