@@ -102,7 +102,7 @@ export class MonitorComponent  implements OnInit {
         value: value,
         sensorIndex: sensorIndex,
         executePumping: (index: number) => this.executePumping(index)
-      },
+      }
     });
   }
 }

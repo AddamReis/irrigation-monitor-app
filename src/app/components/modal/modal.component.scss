@@ -1,6 +1,8 @@
 /* Container geral do modal */
 .container {
     padding: 10px;
+    width: 100%;
+    height: 100%;
   }
   
   /* Header com título centralizado e botão de fechar alinhado à direita */
@@ -19,6 +21,7 @@
     text-align: center;
     flex-grow: 1;
     margin: 0;
+    color: black;
   }
   
   /* Botão de fechar alinhado à direita */
@@ -37,6 +40,7 @@
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    color: black;
   }
   
   /* Footer com botões alinhados: "Cancelar" à esquerda e "Ativar Bomba" à direita */
@@ -64,3 +68,29 @@
     background-color: rgba(0, 0, 0, 0.1);
   }
   
+  .flex-1 {
+    flex: 1;
+  }
+
+  .flex-8 {
+    flex: 8;
+  }
+
+  .flex-10 {
+    flex: 10;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .container, .header, .footer {
+      background-color: #444;
+      color: white;
+    }
+  
+    .activate-button {
+      background-color: #1a73e8; /* Cor do botão no modo escuro */
+    }
+  
+    .close-button {
+      color: white; /* Botão de fechar em branco no modo escuro */
+    }
+  }
