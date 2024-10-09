@@ -14,6 +14,7 @@ export class MonitorComponent  implements OnInit {
   public folder!: string;
   private activatedRoute = inject(ActivatedRoute);
   public data: Sensor | null = null;
+  public sensorHistoricList: Sensor[] = [];
   
   constructor(
     private firebaseService: FirebaseService,
@@ -56,7 +57,6 @@ export class MonitorComponent  implements OnInit {
   }
 
   private historicOfOndex(index: number, days: number = 1) {
-    const sensorDataList: Sensor[] = [];
     const currentDate = new Date();
     currentDate.setHours(currentDate.getHours() - 3);
   
@@ -73,7 +73,7 @@ export class MonitorComponent  implements OnInit {
           const soilMoistureValue = data[time][`soilMoistureValue${index}`];
   
           if (soilMoisturePercentage !== undefined && soilMoistureValue !== undefined) {
-            sensorDataList.push({
+            this.sensorHistoricList.push({
               day: date.getDate(),
               hourMinute: time.replace('-', ':'),  // Converte "hora-minuto" para "hora:minuto"
               soilMoisturePercentageMean: soilMoisturePercentage,
@@ -86,7 +86,7 @@ export class MonitorComponent  implements OnInit {
         // Se for o último dia da iteração, realiza a ordenação e processamento
         if (date.getDate() === currentDate.getDate() - (days - 1)) {
           // Ordena a lista por dia (maior para menor), e depois por hora e minuto
-          sensorDataList.sort((a, b) => {
+          this.sensorHistoricList.sort((a, b) => {
             if (b.day !== a.day) {
               return b.day! - a.day!; // Ordena por dia (maior para menor)
             }
@@ -100,7 +100,7 @@ export class MonitorComponent  implements OnInit {
           });
   
           // Processa a lista após a ordenação
-          console.log(sensorDataList);
+          console.log(this.sensorHistoricList);
         }
       });
     };
