@@ -5,9 +5,11 @@
   
   /* Header com título centralizado e botão de fechar alinhado à direita */
   .header {
+    padding-top: 10px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    position: relative;
     margin-bottom: 1rem;
   }
   
@@ -23,6 +25,10 @@
   .close-button {
     margin-left: auto;
     color: #333;
+    background-color: transparent; /* Remova se quiser um fundo sólido */
+    border-radius: 50%; /* Arredonda completamente o botão */
+    transition: background-color 0.3s ease; /* Efeito de transição */
+    padding: 3px;
   }
   
   /* Conteúdo do diálogo, centralizado */
@@ -52,5 +58,9 @@
   
   .activate-button:hover {
     background-color: #0056b3;
+  }
+
+  .close-button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
   }
   
