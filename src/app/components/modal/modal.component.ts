@@ -19,7 +19,7 @@ export class ModalComponent {
   }
 
   onActivatePumping(): void {
-    this.dialogRef.close();
     this.data.executePumping(this.data.sensorIndex);
+    this.dialogRef.close();
   }
 }
