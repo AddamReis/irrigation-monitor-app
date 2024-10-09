@@ -36,15 +36,10 @@ export class ModalComponent implements OnInit {
   }
 
   setDays(days: number): void {
-    this.historicOfOndex(this.data.sensorIndex, days); // Obtém o histórico de acordo com o número de dias
-
-    // Atualiza os dados do gráfico
-    this.updateChartData();
-  }
-
-  historicOfOndex(index: number, days: number): void {
-    // Simulação de dados históricos
-    this.sensorHistoricList = this.data.getHistoricData(index, days);
+    this.data.historicOfOndex(this.data.sensorIndex, days).then((sensorHistoricList: Sensor[]) => {
+        this.sensorHistoricList = sensorHistoricList;
+        this.updateChartData();
+    });
   }
 
   private updateChartData(): void {

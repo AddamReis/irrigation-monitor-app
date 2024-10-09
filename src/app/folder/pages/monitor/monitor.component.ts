@@ -51,66 +51,62 @@ export class MonitorComponent  implements OnInit {
       };
 
       this.processSensorData(latestData);
-
-      console.log('Dados mais recentes:', this.data);
+      //console.log('Dados mais recentes:', this.data);
     });
   }
 
-  private historicOfOndex(index: number, days: number = 1) {
-    const currentDate = new Date();
-    currentDate.setHours(currentDate.getHours() - 3);
-  
-    // Função auxiliar para buscar os dados de um dia específico
-    const fetchDataForDay = (date: Date) => {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Corrige mês (Jan é 0)
-      const day = String(date.getDate()).padStart(2, '0');
-      
-      this.firebaseService.getDataRealTime(`period/${year}/${month}/${day}`).subscribe((data) => {
-        Object.keys(data).forEach((time) => {
-          // Usando a variável de índice para acessar os dados
-          const soilMoisturePercentage = data[time][`soilMoisturePercentage${index}`];
-          const soilMoistureValue = data[time][`soilMoistureValue${index}`];
-  
-          if (soilMoisturePercentage !== undefined && soilMoistureValue !== undefined) {
-            this.sensorHistoricList.push({
-              day: date.getDate(),
-              hourMinute: time.replace('-', ':'),  // Converte "hora-minuto" para "hora:minuto"
-              soilMoisturePercentageMean: soilMoisturePercentage,
-              soilMoistureValueMean: soilMoistureValue,
-              soilMoistureSensors: []
+  private historicOfOndex(index: number, days: number = 1): Promise<any[]> {
+    return new Promise((resolve) => {
+        const currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() - 3);
+        this.sensorHistoricList = [];
+        
+        const fetchDataForDay = (date: Date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            
+            this.firebaseService.getDataRealTime(`period/${year}/${month}/${day}`).subscribe((data) => {
+                Object.keys(data).forEach((time) => {
+                    const soilMoisturePercentage = data[time][`soilMoisturePercentage${index}`];
+                    const soilMoistureValue = data[time][`soilMoistureValue${index}`];
+        
+                    if (soilMoisturePercentage !== undefined && soilMoistureValue !== undefined) {
+                        this.sensorHistoricList.push({
+                            day: date.getDate(),
+                            hourMinute: time.replace('-', ':'),
+                            soilMoisturePercentageMean: soilMoisturePercentage,
+                            soilMoistureValueMean: soilMoistureValue,
+                            soilMoistureSensors: []
+                        });
+                    }
+                });
+
+                if (date.getDate() === currentDate.getDate() - (days - 1)) {
+                  this.sensorHistoricList.sort((a, b) => {
+                      if (a.day !== b.day) {
+                        return a.day! - b.day!;
+                      }
+                      const [hourA, minuteA] = a.hourMinute.split(':').map(Number);
+                      const [hourB, minuteB] = b.hourMinute.split(':').map(Number);
+                      if (hourA === hourB) {
+                        return minuteA - minuteB;
+                      } else {
+                        return hourA - hourB;
+                      }
+                  });
+              
+                  resolve(this.sensorHistoricList);
+              }
             });
-          }
-        });
-  
-        // Se for o último dia da iteração, realiza a ordenação e processamento
-        if (date.getDate() === currentDate.getDate() - (days - 1)) {
-          // Ordena a lista por dia (maior para menor), e depois por hora e minuto
-          this.sensorHistoricList.sort((a, b) => {
-            if (b.day !== a.day) {
-              return b.day! - a.day!; // Ordena por dia (maior para menor)
-            }
-            const [hourA, minuteA] = a.hourMinute.split(':').map(Number);
-            const [hourB, minuteB] = b.hourMinute.split(':').map(Number);
-            if (hourA === hourB) {
-              return minuteA - minuteB; // Ordena por minutos se as horas forem iguais
-            } else {
-              return hourA - hourB; // Ordena por horas
-            }
-          });
-  
-          // Processa a lista após a ordenação
-          console.log(this.sensorHistoricList);
+        };
+
+        for (let i = 0; i < days; i++) {
+            const date = new Date();
+            date.setDate(currentDate.getDate() - i);
+            fetchDataForDay(date);
         }
-      });
-    };
-  
-    // Itera sobre os últimos dias, começando do dia atual
-    for (let i = 0; i < days; i++) {
-      const date = new Date();
-      date.setDate(currentDate.getDate() - i);
-      fetchDataForDay(date); // Busca dados para cada dia
-    }
+    });
   }
 
   private processSensorData(latestData: any) {
@@ -165,7 +161,8 @@ export class MonitorComponent  implements OnInit {
         value: value,
         sensorIndex: sensorIndex,
         sensorHistoricList: this.sensorHistoricList,
-        executePumping: (index: number) => this.executePumping(index)
+        executePumping: (index: number) => this.executePumping(index),
+        historicOfOndex: (index: number, days: number) => this.historicOfOndex(index, days)
       }
     });
   }
