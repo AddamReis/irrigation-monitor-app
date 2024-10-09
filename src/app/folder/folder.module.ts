@@ -9,6 +9,9 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 import { MonitorComponent } from './pages/monitor/monitor.component';
 import { CardComponent } from '../components/card/card.component';
 import { ModalComponent } from '../components/modal/modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -16,7 +19,9 @@ import { ModalComponent } from '../components/modal/modal.component';
     FormsModule,
     IonicModule,
     FolderPageRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    NgChartsModule
   ],
   declarations: [
     MonitorComponent,

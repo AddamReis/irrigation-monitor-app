@@ -155,13 +155,16 @@ export class MonitorComponent  implements OnInit {
     this.historicOfOndex(sensorIndex, 1);
 
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: '500px',
-      height: '400px',
+      width: '780px',
+      height: '600px',
+      maxWidth: '95vw',
+      maxHeight: '95vw',
       data: {
         title: title,
         percentage: percentage,
         value: value,
         sensorIndex: sensorIndex,
+        sensorHistoricList: this.sensorHistoricList,
         executePumping: (index: number) => this.executePumping(index)
       }
     });

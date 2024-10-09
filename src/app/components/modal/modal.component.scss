@@ -17,14 +17,51 @@
   padding: 10px;
 }
 
+.center {
+  justify-content: center;
+  align-items: start;
+  display: flex;
+}
+
+.description {
+  font-size: 22px;
+}
+
 /* Conteúdo (body) ocupa 8 partes do espaço */
 .content {
-  flex: 8;
+  flex: 12;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   padding: 10px;
+}
+
+.content-graph {
+  border-radius: 15px;
+  height: 100%;
+  width: 100%; 
+  //overflow-y: auto; /* Adiciona scroll quando o conteúdo exceder o tamanho */
+  color: aliceblue;
+  background-color: white;
+  font-size: bold;
+  align-items: start;
+}
+
+.set-days {
+  display: flex;
+  justify-content: space-between; /* Garante que os botões tenham espaçamento igual */
+  width: 100%; /* Faz com que os botões ocupem toda a largura do contêiner */
+  margin-top: 10px; /* Adiciona um espaço acima dos botões, se necessário */
+}
+
+.set-days button {
+  flex: 1; /* Faz com que todos os botões tenham a mesma largura */
+  margin: 0 5px; /* Espaçamento horizontal entre os botões */
+  min-width: 120px; /* Define uma largura mínima para os botões */
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
 }
 
 /* Footer ocupa 1 parte do espaço */
@@ -40,9 +77,11 @@
 .activate-button {
   background-color: #007bff;
   color: white;
-  height: 50px;
+  height: 40px;
   width: 200px;
   border-radius: 15px;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 /* Fechar botão */
@@ -57,19 +96,6 @@
 
 .close-button:hover {
   background-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Flex layout para distribuição */
-.flex-1 {
-  flex: 1;
-}
-
-.flex-8 {
-  flex: 8;
-}
-
-.flex-10 {
-  flex: 10;
 }
 
 /* Dark mode */

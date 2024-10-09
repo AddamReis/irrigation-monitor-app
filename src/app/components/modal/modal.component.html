@@ -1,17 +1,35 @@
 <div class="container mat-elevation-z8">
-  <div class="header">
-    <h4 mat-dialog-title>{{ data.title }}</h4>
-    <button mat-icon-button class="close-button" (click)="onNoClick()">
-      <mat-icon>close</mat-icon>
-    </button>
+  <div>
+    <div class="header">
+      <h5>{{ data.title }}</h5>
+      <button mat-icon-button class="close-button" (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <p class="center description">Umidade: {{ data.percentage }}% - Valor Real: {{ data.value }}</p>
   </div>
-
+  
   <div mat-dialog-content class="content">
-    <p>Umidade: {{ data.percentage }}% - Valor Real: {{ data.value }}</p>
+    <div class="content-graph">
+      <div style="display: block;">
+        <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [legend]="true"
+          [type]="'line'">
+        </canvas>
+      </div>
+      
+    </div>
+    <div class="set-days">
+      <button mat-raised-button (click)="setDays(1)" class="mat-elevation-z4">Último Dia</button>
+      <button mat-raised-button (click)="setDays(3)" class="mat-elevation-z4">Últimos 3 Dias</button>
+      <button mat-raised-button (click)="setDays(7)" class="mat-elevation-z4">Últimos 7 Dias</button>
+    </div>
   </div>
 
   <div mat-dialog-actions class="footer">
-    <button mat-raised-button color="primary" class="activate-button" (click)="onActivatePumping()">
+    <button mat-raised-button color="primary" class="activate-button mat-elevation-z8" (click)="onActivatePumping()">
       Ativar Bomba
     </button>
   </div>
