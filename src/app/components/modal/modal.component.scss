@@ -15,9 +15,11 @@
   justify-content: space-between;
   align-items: start;
   padding: 10px;
+  height: 40px;
 }
 
 .center {
+  height: 20px;
   justify-content: center;
   align-items: start;
   display: flex;
@@ -35,6 +37,7 @@
   justify-content: start;
   align-items: center;
   padding: 10px;
+  min-height: 430px;
 }
 
 .content-graph {
@@ -59,7 +62,7 @@
   flex: 1; /* Faz com que todos os botões tenham a mesma largura */
   margin: 0 5px; /* Espaçamento horizontal entre os botões */
   min-width: 120px; /* Define uma largura mínima para os botões */
-  min-height: 28px;
+  min-height: 24px;
   font-size: 16px;
   font-weight: 500;
   border-radius: 10px;
@@ -70,8 +73,9 @@
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   padding: 10px;
+  height: 40px;
 }
 
 /* Botão ativar bomba */
