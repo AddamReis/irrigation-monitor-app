@@ -1,0 +1,52 @@
+/* Definições básicas para o diálogo */
+:host {
+    display: block; /* Para garantir que o host ocupa o espaço correto */
+  }
+  
+  /* Estilos para o título do diálogo */
+  h4.mat-dialog-title {
+    font-size: 1.5rem; /* Ajuste o tamanho da fonte conforme necessário */
+    margin-bottom: 1rem; /* Espaçamento abaixo do título */
+    text-align: center; /* Centraliza o título */
+  }
+  
+  /* Estilos para o conteúdo do diálogo */
+  .mat-dialog-content {
+    display: flex;
+    flex-direction: column; /* Para alinhar os elementos em coluna */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    padding: 1rem; /* Espaçamento ao redor do conteúdo */
+  }
+  
+  /* Estilos para o texto dentro do conteúdo */
+  .mat-dialog-content p {
+    margin: 0.5rem 0; /* Espaçamento entre os parágrafos */
+    font-size: 1rem; /* Tamanho da fonte do texto */
+    color: #333; /* Cor do texto */
+  }
+  
+  /* Estilos para os botões de ação do diálogo */
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    margin-top: 1rem; /* Espaçamento acima dos botões */
+  }
+  
+  /* Estilos para o botão */
+  .mat-dialog-actions button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    padding: 0.5rem 1rem; /* Espaçamento interno do botão */
+    border: none; /* Remove bordas padrão */
+    border-radius: 4px; /* Bordas arredondadas */
+    transition: background-color 0.3s; /* Efeito de transição para a cor de fundo */
+  }
+  
+  /* Efeito ao passar o mouse sobre o botão */
+  .mat-dialog-actions button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+  }
+  
+  .container{
+    padding: 10px;
+  }

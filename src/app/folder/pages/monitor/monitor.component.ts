@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from 'src/services/firebase.service';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-monitor',
@@ -13,7 +15,10 @@ export class MonitorComponent  implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   public data: Sensor | null = null;
   
-  constructor(private firebaseService: FirebaseService) 
+  constructor(
+    private firebaseService: FirebaseService,
+    private dialog: MatDialog,
+  ) 
   {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id') as string;
   }
@@ -85,6 +90,21 @@ export class MonitorComponent  implements OnInit {
     }
     else{
     }
+  }
+
+  async openSensorDetailModal(title: string, percentage: number, value: number) {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      width: '500px',
+      height: '400px',
+      data: {
+        title: title,
+        percentage: percentage,
+        value: value,
+      },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }
 

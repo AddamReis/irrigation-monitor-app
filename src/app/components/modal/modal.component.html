@@ -1,0 +1,11 @@
+<div class="container">
+  <h4 mat-dialog-title>{{ data.title }}</h4>
+  <div mat-dialog-content>
+    <p>Informações do Sensor:</p>
+    <p>Percentagem de Umidade: {{ data.percentage }}%</p>
+    <p>Valor de Umidade: {{ data.value }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Fechar</button>
+  </div>
+</div>

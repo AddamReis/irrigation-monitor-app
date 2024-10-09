@@ -8,6 +8,7 @@ import { FolderPageRoutingModule } from './folder-routing.module';
 
 import { MonitorComponent } from './pages/monitor/monitor.component';
 import { CardComponent } from '../components/card/card.component';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CardComponent } from '../components/card/card.component';
   ],
   declarations: [
     MonitorComponent,
-    CardComponent
+    CardComponent,
+    ModalComponent
   ]
 })
 export class FolderPageModule {}
