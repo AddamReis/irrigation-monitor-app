@@ -12,6 +12,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { NgChartsModule } from 'ng2-charts';
+import { AlertConfirmationService } from 'src/services/alert-confirmation.service';
 
 @NgModule({
   imports: [
@@ -27,6 +28,9 @@ import { NgChartsModule } from 'ng2-charts';
     MonitorComponent,
     CardComponent,
     ModalComponent
+  ],
+  providers: [
+    AlertConfirmationService
   ]
 })
 export class FolderPageModule {}
