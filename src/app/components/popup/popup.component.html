@@ -1,0 +1,3 @@
+<div *ngIf="message" [ngClass]="{'popup': true, 'show': show, 'success': type === 'success', 'error': type === 'error', 'warning': type === 'warning'}">
+  {{ message }}
+</div>

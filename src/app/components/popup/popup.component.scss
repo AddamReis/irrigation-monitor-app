@@ -1,0 +1,32 @@
+.popup {
+    position: fixed;
+    top: 20px;
+    right: 35px;
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    z-index: 999999;
+  
+    &.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &.success {
+      background-color: rgb(69, 179, 69);
+      color: white;
+    }
+  
+    &.error {
+      background-color: red;
+      color: white;
+    }
+
+    &.warning {
+      background-color: rgb(237, 218, 73);
+      color: black;
+    }
+  }
