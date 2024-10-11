@@ -44,7 +44,7 @@
   border-radius: 15px;
   height: 100%;
   width: 100%; 
-  //overflow-y: auto; /* Adiciona scroll quando o conteúdo exceder o tamanho */
+  overflow-y: auto; /* Adiciona scroll quando o conteúdo exceder o tamanho */
   color: aliceblue;
   background-color: white;
   font-size: bold;
@@ -116,5 +116,29 @@
 
   .close-button {
     color: white;
+  }
+}
+
+:host ::ng-deep .custom-alert {
+  z-index: 10000; /* Ajuste o valor conforme necessário */
+}
+
+:host ::ng-deep .custom-dialog {
+  z-index: 999; /* Menor que o alert */
+}
+
+button {
+  font-size: 20px;
+  font-weight: 400;
+  transition: all 0.3s ease; // Transição suave para efeitos de hover e click
+
+  &:hover {
+    transform: scale(1.05); // Leve aumento no tamanho
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); // Sombra para dar destaque
+  }
+
+  &:active {
+    transform: scale(0.98); // Leve redução para indicar o clique
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); // Menor sombra durante o clique
   }
 }

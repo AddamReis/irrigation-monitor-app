@@ -155,6 +155,7 @@ export class MonitorComponent  implements OnInit {
       height: '600px',
       maxWidth: '95vw',
       maxHeight: '95vw',
+      panelClass: 'custom-dialog',
       data: {
         title: title,
         percentage: percentage,

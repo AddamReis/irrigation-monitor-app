@@ -1,0 +1,73 @@
+.custom-dialog-class {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    width: 100%;
+    height: auto;
+  }
+  
+  h1[mat-dialog-title] {
+    text-align: center;
+    align-items: start;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 0;
+  }
+  
+  div[mat-dialog-content] {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+    overflow: hidden; //desabilita o scroll
+  }
+  
+  div[mat-dialog-actions] {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  div[mat-dialog-actions] button {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  div[mat-dialog-actions] button:first-child {
+    background-color: #cc4b4b;
+    border-radius: 10px;
+  }
+  
+  div[mat-dialog-actions] button:last-child {
+    background-color: #1a73e8;
+    border-radius: 10px;
+  }
+
+  button {
+    font-size: 20px;
+    font-weight: 400;
+    transition: all 0.3s ease; // Transição suave para efeitos de hover e click
+  
+    &:nth-child(2) {
+      background-color: blue;
+    }
+  
+    &:nth-child(1) {
+      background-color: #d9534f;
+    }
+  
+    &:hover {
+      transform: scale(1.05); // Leve aumento no tamanho
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); // Sombra para dar destaque
+    }
+  
+    &:active {
+      transform: scale(0.98); // Leve redução para indicar o clique
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); // Menor sombra durante o clique
+    }
+  }
+  
+  

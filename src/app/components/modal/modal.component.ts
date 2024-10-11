@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ChartOptions, ChartDataset, ChartType } from 'chart.js';
 import { Sensor } from 'src/app/folder/pages/monitor/monitor.component';
+import { AlertConfirmationService } from 'src/services/alert-confirmation.service';
 
 @Component({
   selector: 'app-modal',
@@ -18,7 +19,8 @@ export class ModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private alertConfirmationService: AlertConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -31,12 +33,20 @@ export class ModalComponent implements OnInit {
   }
 
   onActivatePumping(): void {
-    this.data.executePumping(this.data.sensorIndex); // Ativa a bomba
-    this.dialogRef.close();
+    this.alertConfirmationService.showConfirmation(
+      'Confirmar Ativação',
+      'Tem certeza que deseja confirmar a ativação da bomba?',
+      () => {
+        this.data.executePumping(this.data.sensorIndex); // Ativa a bomba
+        this.dialogRef.close();
+      },
+      'custom-dialog-class' // Passe a classe CSS aqui
+    );
   }
 
   setDays(days: number): void {
-    this.data.historicOfOndex(this.data.sensorIndex, days).then((sensorHistoricList: Sensor[]) => {
+    this.data.historicOfOndex(this.data.sensorIndex, days).then((sensorHistoricList: Sensor[]) => 
+      {
         this.sensorHistoricList = sensorHistoricList;
         this.updateChartData(days);
     });

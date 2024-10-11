@@ -13,6 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { NgChartsModule } from 'ng2-charts';
 import { AlertConfirmationService } from 'src/services/alert-confirmation.service';
+import { AlertComponent } from '../components/alert/alert.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { AlertConfirmationService } from 'src/services/alert-confirmation.servic
   declarations: [
     MonitorComponent,
     CardComponent,
-    ModalComponent
+    ModalComponent,
+    AlertComponent
   ],
   providers: [
     AlertConfirmationService

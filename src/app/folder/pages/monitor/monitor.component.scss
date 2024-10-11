@@ -38,3 +38,7 @@ ion-menu-button {
   .card-wrapper {
     flex: 0 1 200px; /* Os cards terão largura fixa de 200px, mas poderão encolher se necessário */
   }
+
+  :host ::ng-deep .custom-dialog {
+    z-index: 999; /* Menor que o alert */
+  }
