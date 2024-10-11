@@ -39,11 +39,11 @@ export class ModalComponent implements OnInit {
       'Confirmar Ativação',
       'Tem certeza que deseja confirmar a ativação da bomba?',
       () => {
-        this.data.executePumping(this.data.sensorIndex); // Ativa a bomba
+        this.data.executePumping(this.data.sensorIndex);
         this.dialogRef.close();
-        this.popupService.showSuccess('Solicitado Com sucesso, aguarde a execução', 10);
+        this.popupService.showSuccess('Solicitado com sucesso, aguarde a execução', 10);
       },
-      'custom-dialog-class' // Passe a classe CSS aqui
+      'custom-dialog-class'
     );
   }
 
