@@ -51,7 +51,6 @@ export class MonitorComponent  implements OnInit {
       };
 
       this.processSensorData(latestData);
-      //console.log('Dados mais recentes:', this.data);
     });
   }
 
@@ -137,10 +136,10 @@ export class MonitorComponent  implements OnInit {
 
   private executePumping(index: number, allPumping?: boolean | undefined) {
     if(allPumping) {
-      this.firebaseService.updateData('request/', { 'execut-all-pumps': true });
+      this.firebaseService.updateData('request/', { 'execute-all-pumps': true });
     }
     else if (index > 0) {
-      this.firebaseService.updateData('request/', {[`execut-pump-${index}`] : true });
+      this.firebaseService.updateData('request/', {[`execute-pump-${index}`] : true });
     }
     else{
     }
